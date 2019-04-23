@@ -76,10 +76,10 @@ app.post("/users", (req, res) => {
   var user = new User(body);
 
   user.save().then(
-    doc => {
-      res.send(doc);
-    },
-  ).catch(e => res.status(400).send(e));
+    () => user.generateAuthToken()
+  ).then(token => {
+    res.header('x-auth', token).send(user);
+  }).catch(e => res.status(400).send(e));
 });
 
 app.listen(port, () => {
