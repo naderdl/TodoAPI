@@ -214,7 +214,7 @@ describe('POST /users', () => {
 
     request(app)
       .post('/users')
-      .send({email, password})
+      .send({ email, password })
       .expect(400)
       .end(done)
 
@@ -223,7 +223,7 @@ describe('POST /users', () => {
   it('should not create user if email in use', done => {
     request(app)
       .post('/users')
-      .send({email: 'naderdaliri@gmail.com', password: 'asd123zx!'})
+      .send({ email: 'naderdaliri@gmail.com', password: 'asd123zx!' })
       .expect(400)
       .end(done)
   })
